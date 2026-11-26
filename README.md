@@ -2,7 +2,7 @@
 
 Small ZMK behaviors for the korz keyboard. One feature per release tag.
 
-## v0.1: caps word with stop keys
+## v0.1.1: caps word with stop keys (v0.1 broke the peripheral half builds)
 
 A copy of ZMK's caps word (MIT, ZMK contributors) with two additions:
 

@@ -2,5 +2,7 @@ config KORZ_CAPS_WORD
 	bool "korz caps word: ZMK's caps word with a list of keys that stop it"
 	default y
 	depends on DT_HAS_KORZ_BEHAVIOR_CAPS_WORD_ENABLED
+	# like ZMK's own: the halves of a split that are not the central have no key event or HID code
+	depends on !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
 	help
 	  Used when the keymap sets compatible = "korz,behavior-caps-word" on &caps_word.
