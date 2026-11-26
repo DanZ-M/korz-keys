@@ -1,0 +1,5 @@
+if(CONFIG_KORZ_EPD_REFRESH OR CONFIG_KORZ_EPD_SCREEN)
+  zephyr_library()
+  zephyr_library_sources_ifdef(CONFIG_KORZ_EPD_REFRESH src/epd_refresh.c)
+  zephyr_library_sources_ifdef(CONFIG_KORZ_EPD_SCREEN src/epd_screen.c src/epd_icons.c)
+endif()
