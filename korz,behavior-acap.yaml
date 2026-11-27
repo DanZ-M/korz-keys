@@ -1,0 +1,5 @@
+description: A letter that is always capital, even when the computer's Caps Lock is on
+
+compatible: "korz,behavior-acap"
+
+include: one_param.yaml
