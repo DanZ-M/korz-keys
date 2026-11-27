@@ -1,0 +1,11 @@
+/* korz-keys: &acap, a letter that is capital whatever the computer's Caps Lock state */
+/ {
+    behaviors {
+        /omit-if-no-ref/
+        acap: acap {
+            compatible = "korz,behavior-acap";
+            #binding-cells = <1>;
+            display-name = "Capital letter";
+        };
+    };
+};
