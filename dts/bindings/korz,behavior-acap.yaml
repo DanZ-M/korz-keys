@@ -3,7 +3,3 @@ description: A letter that is always capital, even when the computer's Caps Lock
 compatible: "korz,behavior-acap"
 
 include: one_param.yaml
-
-parameters:
-  - name: key
-    description: The letter (for example V). Other keys are sent as they are.
