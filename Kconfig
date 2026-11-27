@@ -13,3 +13,23 @@ config KORZ_ACAP
 	depends on DT_HAS_KORZ_BEHAVIOR_ACAP_ENABLED
 	depends on ZMK_HID_INDICATORS
 	depends on !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
+
+config KORZ_LAYER_TIMEOUT
+	bool "Back to the default layer after a quiet period"
+	depends on !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
+	help
+	  Quiet means no key, no layer change and no pointing input (joystick, air mouse).
+	  Layers switched on (toggled, auto layers) are switched off; a held key is never cut off.
+
+if KORZ_LAYER_TIMEOUT
+
+config KORZ_LAYER_TIMEOUT_S
+	int "Seconds of quiet before the layers are switched off"
+	default 120
+	range 5 86400
+
+config KORZ_LAYER_TIMEOUT_KEEP_MASK
+	hex "Layers that never time out (bit = layer number, 0x10 = layer 4, 0 = none)"
+	default 0x0
+
+endif # KORZ_LAYER_TIMEOUT

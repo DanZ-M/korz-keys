@@ -41,6 +41,15 @@ VAL: VAL { compatible = "zmk,behavior-macro"; #binding-cells = <0>;
            bindings = <&macro_tap &acap V &acap A &acap L &acap V &kp KP_N0>; };
 ```
 
-## Planned
+## v0.3: layer idle timeout
 
-v0.3 layer idle timeout: back to the default layer after a quiet period.
+Back to the default layer (QWERTY) after a quiet period: no key, no layer change and no
+pointing input (joystick, air mouse) for `CONFIG_KORZ_LAYER_TIMEOUT_S` seconds (default 120),
+and no key held. Off by default; in the dongle's .conf:
+
+```
+CONFIG_KORZ_LAYER_TIMEOUT=y
+# CONFIG_KORZ_LAYER_TIMEOUT_S=120
+# layers that never time out, bit = layer number (QWERTY 0, NUMB 1, MOUSE 2, FUNC 3, a design layer 4 = 0x10)
+# CONFIG_KORZ_LAYER_TIMEOUT_KEEP_MASK=0x10
+```
