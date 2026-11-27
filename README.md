@@ -2,7 +2,10 @@
 
 Small ZMK behaviors for the korz keyboard. One feature per release tag.
 
-## v0.1.1: caps word with stop keys (v0.1 broke the peripheral half builds)
+## v0.1.2: caps word with stop keys
+
+v0.1: broke the peripheral half builds. v0.1.1: letters were not capitalised (the listener ran after
+ZMK's HID listener). v0.1.2: the source is added to the app target so it runs before it.
 
 A copy of ZMK's caps word (MIT, ZMK contributors) with two additions:
 
