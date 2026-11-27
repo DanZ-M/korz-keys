@@ -27,7 +27,20 @@ Use it by switching the compatible of the existing `&caps_word` node:
 The "active" flag stays the first member of the behavior's data, so keyfx's CI_CAPS_WORD
 lights keep working. Remove the `compatible` line to go back to ZMK's own caps word.
 
+## v0.2: &acap, a capital that ignores Caps Lock
+
+With the computer's Caps Lock on, Shift + letter types a lowercase letter, so a macro made of
+`&kp LS(V)` types `v`. `&acap V` reads the Caps Lock state the computer reports (host LED
+report, needs `CONFIG_ZMK_HID_INDICATORS=y`) and sends Shift + V when it is off, plain V when
+it is on: always a capital. Only letters are changed; any other key is sent as given.
+
+```
+#include <behaviors/acap.dtsi>      /* next to your other behavior includes */
+
+VAL: VAL { compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+           bindings = <&macro_tap &acap V &acap A &acap L &acap V &kp KP_N0>; };
+```
+
 ## Planned
 
-v0.2 `&acap`: a letter that is capital whatever the computer's Caps Lock state.
 v0.3 layer idle timeout: back to the default layer after a quiet period.

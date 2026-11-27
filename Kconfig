@@ -6,3 +6,10 @@ config KORZ_CAPS_WORD
 	depends on !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
 	help
 	  Used when the keymap sets compatible = "korz,behavior-caps-word" on &caps_word.
+
+config KORZ_ACAP
+	bool "korz &acap: a letter that is capital whatever the computer's Caps Lock state"
+	default y
+	depends on DT_HAS_KORZ_BEHAVIOR_ACAP_ENABLED
+	depends on ZMK_HID_INDICATORS
+	depends on !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
