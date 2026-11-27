@@ -32,4 +32,9 @@ config KORZ_LAYER_TIMEOUT_KEEP_MASK
 	hex "Layers that never time out (bit = layer number, 0x10 = layer 4, 0 = none)"
 	default 0x0
 
+config KORZ_LAYER_TIMEOUT_CAPS_WORD
+	bool "The quiet period also ends caps word"
+	default y
+	depends on KORZ_CAPS_WORD
+
 endif # KORZ_LAYER_TIMEOUT

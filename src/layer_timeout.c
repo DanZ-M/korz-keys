@@ -2,7 +2,7 @@
  * korz-keys: back to the default layer after a quiet period.
  * Quiet = no key pressed, no layer change and no pointing input (joystick, air mouse) for
  * KORZ_LAYER_TIMEOUT_S seconds, and no key held down. Layers in KORZ_LAYER_TIMEOUT_KEEP_MASK
- * (bit = layer number) are left alone.
+ * (bit = layer number) are left alone. Caps word ends too (KORZ_LAYER_TIMEOUT_CAPS_WORD).
  */
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
@@ -15,6 +15,10 @@
 #endif
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
+
+#if IS_ENABLED(CONFIG_KORZ_LAYER_TIMEOUT_CAPS_WORD)
+void korz_caps_word_stop(void); /* behavior_korz_caps_word.c */
+#endif
 
 static struct k_work_delayable idle_work;
 static int keys_down;
@@ -30,6 +34,10 @@ static void idle_fn(struct k_work *work)
 		restart();
 		return;
 	}
+
+#if IS_ENABLED(CONFIG_KORZ_LAYER_TIMEOUT_CAPS_WORD)
+	korz_caps_word_stop();
+#endif
 
 	zmk_keymap_layers_state_t state = zmk_keymap_layer_state();
 

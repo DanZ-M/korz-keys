@@ -92,6 +92,13 @@ ZMK_SUBSCRIPTION(behavior_caps_word, zmk_keycode_state_changed);
 #define GET_DEV(inst) DEVICE_DT_INST_GET(inst),
 static const struct device *devs[] = {DT_INST_FOREACH_STATUS_OKAY(GET_DEV)};
 
+/* used by the layer timeout (layer_timeout.c): end caps word without a key press */
+void korz_caps_word_stop(void) {
+    for (int i = 0; i < ARRAY_SIZE(devs); i++) {
+        deactivate_caps_word(devs[i]);
+    }
+}
+
 static bool caps_word_is_caps_includelist(const struct behavior_caps_word_config *config,
                                           uint16_t usage_page, uint8_t usage_id,
                                           uint8_t implicit_modifiers) {

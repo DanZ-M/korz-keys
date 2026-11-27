@@ -45,7 +45,7 @@ VAL: VAL { compatible = "zmk,behavior-macro"; #binding-cells = <0>;
 
 Back to the default layer (QWERTY) after a quiet period: no key, no layer change and no
 pointing input (joystick, air mouse) for `CONFIG_KORZ_LAYER_TIMEOUT_S` seconds (default 120),
-and no key held. Off by default; in the dongle's .conf:
+and no key held. Caps word ends too (`CONFIG_KORZ_LAYER_TIMEOUT_CAPS_WORD=n` to keep it). Off by default; in the dongle's .conf:
 
 ```
 CONFIG_KORZ_LAYER_TIMEOUT=y
