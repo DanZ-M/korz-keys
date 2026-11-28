@@ -38,3 +38,23 @@ config KORZ_LAYER_TIMEOUT_CAPS_WORD
 	depends on KORZ_CAPS_WORD
 
 endif # KORZ_LAYER_TIMEOUT
+
+config KORZ_HOLD_TAP
+	bool "korz hold-tap: ZMK's hold-tap with its own list, so one can sit inside another"
+	default y
+	depends on DT_HAS_KORZ_BEHAVIOR_HOLD_TAP_ENABLED
+	help
+	  Used when the keymap sets compatible = "korz,behavior-hold-tap" on a hold-tap that is
+	  placed inside the tap binding of another hold-tap (same key position).
+
+if KORZ_HOLD_TAP
+
+config KORZ_HOLD_TAP_MAX_HELD
+	int "Most korz hold-taps held at once"
+	default 10
+
+config KORZ_HOLD_TAP_MAX_CAPTURED_EVENTS
+	int "Most key events a korz hold-tap keeps while it waits to decide"
+	default 40
+
+endif # KORZ_HOLD_TAP

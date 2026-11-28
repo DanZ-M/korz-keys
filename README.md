@@ -2,6 +2,17 @@
 
 Small ZMK behaviors for the korz keyboard. One feature per release tag.
 
+## korz hold-tap: a hold-tap inside a hold-tap
+
+ZMK's hold-tap finds its active entry by key position only. A hold-tap placed in the tap
+binding of another hold-tap on the same key (for example `tlt` -> tap dance -> `&LPT1`) then
+gets the wrong entry on release, the inner release is lost and the hold stays pressed.
+`korz,behavior-hold-tap` is a copy of ZMK's hold-tap (commit 4dd95d78, logic unchanged) with
+its own list, so the two do not meet. Same properties as `zmk,behavior-hold-tap`. Use it only
+for the inner hold-tap: set `compatible = "korz,behavior-hold-tap";` on that node.
+Limits: `CONFIG_KORZ_HOLD_TAP_MAX_HELD` (10), `CONFIG_KORZ_HOLD_TAP_MAX_CAPTURED_EVENTS` (40).
+After a ZMK update, compare `src/behavior_korz_hold_tap.c` with ZMK's `behavior_hold_tap.c`.
+
 ## v0.1.2: caps word with stop keys
 
 v0.1: broke the peripheral half builds. v0.1.1: letters were not capitalised (the listener ran after
